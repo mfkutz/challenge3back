@@ -1,5 +1,4 @@
 const fs = require('fs')
-
 class ProductManager {
 
     constructor(pathFile) {
@@ -10,11 +9,12 @@ class ProductManager {
 
     async initialize() {
         try {
-            const data = await fs.promises.readFile(this.path, 'utf-8')
-            this.products = JSON.parse(data) || []
-            this.id = this.calculateNextId()
+            const data = await fs.promises.readFile(this.path, 'utf-8');
+            this.products = JSON.parse(data) || [];
+            this.id = this.calculateNextId();
         } catch (error) {
-            console.error('Error initializing ProductManager', error)
+            console.error(`Error initializing ProductManager: ${error.message}`);
+            throw error;
         }
     }
 
@@ -94,15 +94,25 @@ class ProductManager {
 
 // Test
 (async () => {
-    const productManager = new ProductManager('./products.json')
+    const productManager = new ProductManager('./src/products.json') // OK
     await productManager.initialize()
 
     //Add products
     // productManager.addProduct({ title: 'Product1', description: 'description1', price: 34, thumbnail: 'thumbnail1.jpg', code: 'P001', stock: 23 })
     // productManager.addProduct({ title: 'Product2', description: 'description2', price: 45, thumbnail: 'thumbnail2.jpg', code: 'P002', stock: 34 })
     // productManager.addProduct({ title: 'Product3', description: 'description3', price: 45, thumbnail: 'thumbnail3.jpg', code: 'P003', stock: 55 })
-    // productManager.addProduct({ title: 'Product3', description: 'description3', price: 45, thumbnail: 'thumbnail3.jpg', code: 'P003', stock: 55 })
-    // productManager.addProduct({ title: 'Product4', description: 'description4', price: 48, thumbnail: 'thumbnail4.jpg', code: 'P004', stock: 87 })
+    // productManager.addProduct({ title: 'Product4', description: 'description4', price: 32, thumbnail: 'thumbnail4.jpg', code: 'P004', stock: 32 })
+    // productManager.addProduct({ title: 'Product5', description: 'description5', price: 44, thumbnail: 'thumbnail5.jpg', code: 'P005', stock: 12 })
+    // productManager.addProduct({ title: 'Product6', description: 'description6', price: 32, thumbnail: 'thumbnail6.jpg', code: 'P006', stock: 67 })
+    // productManager.addProduct({ title: 'Product7', description: 'description7', price: 12, thumbnail: 'thumbnail7.jpg', code: 'P007', stock: 89 })
+    // productManager.addProduct({ title: 'Product8', description: 'description8', price: 78, thumbnail: 'thumbnail8.jpg', code: 'P008', stock: 78 })
+    // productManager.addProduct({ title: 'Product9', description: 'description9', price: 98, thumbnail: 'thumbnail9.jpg', code: 'P009', stock: 67 })
+    // productManager.addProduct({ title: 'Product10', description: 'description10', price: 87, thumbnail: 'thumbnail10.jpg', code: 'P010', stock: 56 })
+    // productManager.addProduct({ title: 'Product11', description: 'description11', price: 78, thumbnail: 'thumbnail11.jpg', code: 'P011', stock: 55 })
+    // productManager.addProduct({ title: 'Product12', description: 'description12', price: 77, thumbnail: 'thumbnail12.jpg', code: 'P012', stock: 79 })
+    // productManager.addProduct({ title: 'Product13', description: 'description13', price: 65, thumbnail: 'thumbnail13.jpg', code: 'P013', stock: 90 })
+    // productManager.addProduct({ title: 'Product14', description: 'description14', price: 74, thumbnail: 'thumbnail14.jpg', code: 'P014', stock: 99 })
+    // productManager.addProduct({ title: 'Product15', description: 'description15', price: 88, thumbnail: 'thumbnail15.jpg', code: 'P015', stock: 03 })
 
     //All products
     /* productManager.getProducts()
@@ -119,10 +129,10 @@ class ProductManager {
     /* productManager.updateProduct(1, { title: 'ProductModified2', price: 532 }) */
 
     //Delete product
-    /* productManager.deleteProduct(4) */
+    // productManager.deleteProduct(4)
 
 })()
 
-
+module.exports = ProductManager
 
 
