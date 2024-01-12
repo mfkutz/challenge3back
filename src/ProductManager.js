@@ -92,6 +92,7 @@ class ProductManager {
     }
 }
 
+
 // Test
 (async () => {
     const productManager = new ProductManager('./src/products.json') // OK

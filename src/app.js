@@ -28,6 +28,17 @@ app.get('/products', async (req, res) => {
     }
 })
 
+app.get('/', (req, res) => {
+    const welcome = `
+    <html>
+        <body>
+            <h1>Welcome to server</h1>
+        </body>
+    </html>
+    `
+    res.send(welcome)
+})
+
 app.get('/products/:id', async (req, res) => {
     try {
         let isId = parseInt(req.params.id, 10)
