@@ -24,7 +24,7 @@ app.get('/products', async (req, res) => {
             res.json(allProducts);
         }
     } catch (error) {
-        res.status(500).send('Internal Server Error');
+        res.send('Internal Server Error');
     }
 })
 
