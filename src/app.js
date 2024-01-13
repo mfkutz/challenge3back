@@ -3,7 +3,9 @@ const ProductManager = require('./ProductManager') //import OK
 const app = express()
 const PORT = 8080
 
-app.use(express.urlencoded({ extended: true }))
+
+// app.use(express.json()) //Now the server will be able to receive jsons at the time of the request
+// app.use(express.urlencoded({ extended: true })) //Allows information to be sent also from the URL
 
 const productManager = new ProductManager('./src/products.json')
 productManager.initialize()
